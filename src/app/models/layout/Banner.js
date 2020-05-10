@@ -6,7 +6,7 @@ class Banner extends Model {
       {
         title: Sequelize.STRING,
         link: Sequelize.BOOLEAN,
-        route: Sequelize.ENUM,
+        route: Sequelize.INTEGER
       },
       {
         sequelize,

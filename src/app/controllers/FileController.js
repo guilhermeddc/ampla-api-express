@@ -1,6 +1,20 @@
 import File from '../models/File'
 
 class FileController {
+  async index (req, res) {
+    const files = await File.findAll()
+
+    return res.json(files)
+  }
+
+  async show (req, res) {
+    const { id } = req.params
+
+    const file = await File.findByPk(id)
+
+    return res.json(file)
+  }
+
   async store (req, res) {
     const { originalname: name, filename: path } = req.file
 

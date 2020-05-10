@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('banners', {
-      id: { 
+      id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
@@ -13,14 +13,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      link: { 
+      link: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
         allowNull: false
       },
       route: {
-        type: Sequelize.ENUM('blog', 'produto', 'loja'),
-        allowNull: false,
+        type: Sequelize.INTEGER,
+        allowNull: true,
       },
       background_id: {
         type: Sequelize.INTEGER,
@@ -50,11 +50,11 @@ module.exports = {
         onDelete: 'SET NULL',
         allowNull: true
       },
-      created_at: { 
+      created_at: {
         type: Sequelize.DATE,
         allowNull: false
       },
-      updated_at: { 
+      updated_at: {
         type: Sequelize.DATE,
         allowNull: false
       },
