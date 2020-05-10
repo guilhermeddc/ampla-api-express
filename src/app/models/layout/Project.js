@@ -17,7 +17,10 @@ class Project extends Model {
   }
 
   static associate = models => {
-    this.hasMany(models.ProjectImage, { foreignKey: 'project_id', as: 'images' });
+    this.belongsTo(models.File, { foreignKey: 'primary', as: 'primary_image' });
+    this.belongsTo(models.File, { foreignKey: 'secondary', as: 'secondary_image' });
+    this.belongsTo(models.File, { foreignKey: 'tertiary', as: 'tertiary_image' });
+    this.belongsTo(models.File, { foreignKey: 'fourthly', as: 'fourthly_image' });
   }
 }
 

@@ -8,9 +8,15 @@ import File from '../../models/File'
 class ProductController {
   async index (req, res) {
     const products = await Product.findAll({
-      attributes: ['id', 'name', 'description', 'price', 'image_id', 'category_id', 'provider_id'],
+      attributes: [
+        'id', 'name', 'description', 'price', 'primary', 'secondary',
+        'tertiary', 'fourthly', 'category_id', 'provider_id'
+      ],
       include: [
-        { model: File, as: 'image', attributes: ['name', 'path', 'url'] },
+        { model: File, as: 'primary_image', attributes: ['name', 'path', 'url'] },
+        { model: File, as: 'secondary_image', attributes: ['name', 'path', 'url'] },
+        { model: File, as: 'tertiary_image', attributes: ['name', 'path', 'url'] },
+        { model: File, as: 'fourthly_image', attributes: ['name', 'path', 'url'] },
         {
           model: Category, as: 'category', attributes: ['id', 'name', 'description', 'image_id'],
           include: [
@@ -49,9 +55,9 @@ class ProductController {
       return res.status(400).json({ error: 'Product already exists' })
     }
 
-    const { id, name, description, price, image_id, category_id, provider_id } = await Product.create(req.body)
+    const { id, name, description, price, primary, secondary, tertiary, fourthly, category_id, provider_id } = await Product.create(req.body)
 
-    return res.json({ id, name, description, price, image_id, category_id, provider_id })
+    return res.json({ id, name, description, price, primary, secondary, tertiary, fourthly, category_id, provider_id })
   }
 
   async update (req, res) {
@@ -67,9 +73,9 @@ class ProductController {
       return res.status(400).json({ error: 'Validation fails' })
     }
 
-    const { id, name, description, price, image_id, category_id, provider_id } = await Product.update(req.body)
+    const { id, name, description, price, primary, secondary, tertiary, fourthly, category_id, provider_id } = await Product.update(req.body)
 
-    return res.json({ id, name, description, price, image_id, category_id, provider_id })
+    return res.json({ id, name, description, price, primary, secondary, tertiary, fourthly, category_id, provider_id })
   }
 }
 

@@ -11,7 +11,6 @@ import AdminController from './app/controllers/AdminController'
 import CategoryController from './app/controllers/store/CategoryController'
 import ProviderController from './app/controllers/store/ProviderController'
 import ProductController from './app/controllers/store/ProductController'
-import ProductImageController from './app/controllers/store/ProductImageController'
 
 import PostController from './app/controllers/blog/PostController'
 import CommentController from './app/controllers/blog/CommentController'
@@ -26,7 +25,6 @@ routes.get('/', (req, res) => res.json({ message: 'Api Running' }))
 routes.post('/users', UserController.store)
 routes.post('/sessions', SessionController.store)
 routes.get('/products', ProductController.index)
-routes.get('/products/:product_id/images', ProductImageController.index)
 
 routes.use(auth)
 
@@ -42,8 +40,6 @@ routes.put('/providers', ProviderController.update)
 routes.get('/providers', ProviderController.index)
 
 routes.post('/products', ProductController.store)
-
-routes.post('/products/:product_id/images', upload.single('file'), ProductImageController.store)
 
 routes.post('/posts', PostController.store)
 routes.put('/posts', PostController.update)
