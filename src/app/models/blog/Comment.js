@@ -1,17 +1,23 @@
 import Sequelize, { Model } from 'sequelize'
 
-class Type extends Model {
+class Comment extends Model {
   static init (sequelize) {
     super.init(
       {
         name: Sequelize.STRING,
+        commentary: Sequelize.TEXT,
       },
       {
         sequelize,
       }
     )
+
     return this
+  }
+
+  static associate = models => {
+    this.belongsTo(models.Post, { foreignKey: 'post_id', as: 'post' });
   }
 }
 
-export default Type
+export default Comment
